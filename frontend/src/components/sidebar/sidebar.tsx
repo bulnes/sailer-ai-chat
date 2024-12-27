@@ -1,4 +1,18 @@
+import { useEffect, useState } from "react";
+import { listAllChats } from "../../services/chat.services";
+
 export function Sidebar() {
+  const [chats, setChats] = useState([]);
+
+  const loadChats = async () => {
+    const allChats = await listAllChats();
+    console.log(allChats);
+  };
+
+  useEffect(() => {
+    loadChats();
+  }, []);
+
   return (
     <div className="col-12 col-md-4 border-end overflow-auto d-md-block d-none p-0 bg-light">
       <div className="list-group rounded-0">
